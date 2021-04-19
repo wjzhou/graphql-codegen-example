@@ -1,0 +1,16 @@
+query search($term: String!){
+    search(term: $term) {
+        __typename
+        ...on User {
+            ...UserFragment
+        }
+        ...on ChatMessage {
+            id
+            content
+            time
+            user {
+                ...UserFragment
+            }
+        }
+    }
+}

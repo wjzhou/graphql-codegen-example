@@ -1,0 +1,19 @@
+overwrite: true
+schema: "../server/src/schema.graphql.ts"
+documents: 'src/**/*.graphql'
+generates:
+  src/apollo/types.ts:
+    - typescript
+  src/apollo/client-helpers.ts:
+    plugins:
+      - typescript-apollo-client-helpers
+  src/apollo/possible-types.ts:
+    plugins:
+      - fragment-matcher
+  src/:
+    preset: near-operation-file
+    presetConfig:
+       baseTypesPath: apollo/types.ts
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo
